@@ -1,0 +1,6 @@
+[Node1]
+192.168.88.90 ansible_ssh_user=root
+[Node2]
+192.168.88.94 ansible_ssh_user=root
+[Node3]
+192.168.88.95 ansible_ssh_user=root

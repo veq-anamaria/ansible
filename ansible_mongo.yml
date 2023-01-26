@@ -1,0 +1,23 @@
+---
+- hosts: 192.168.88.90
+  remote_user: root
+  tasks:
+  - name: MongoDB - Import public key
+    apt_key:
+      url: https://www.mongodb.org/static/pgp/server-4.4.asc
+      state: present
+  - name: MongoDB - Add repository
+    apt_repository:
+      filename: '/etc/apt/sources.list.d/mongodb-org.list'
+      repo: 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse'
+      state: present
+      update_cache: yes
+  - name: MongoDB - Install MongoDB
+    apt:
+      name: mongodb-org
+      state: present
+      update_cache: yes
+  - name: MongoDB - Running state
+    service:
+      name: mongod
+      state: started
